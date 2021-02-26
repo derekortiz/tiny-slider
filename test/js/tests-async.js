@@ -118,7 +118,7 @@ async function testBase () {
         currentSlide = slideItems[current];
 
     if (assertion !== false) {
-      assertion = 
+      assertion =
         navItems[i].className.indexOf(navActiveClass) >= 0 &&
         getAbsIndex(current, 0, info) === i * items &&
         compare2Nums(currentSlide.getBoundingClientRect().left, 0) &&
@@ -134,30 +134,30 @@ async function testBase () {
     // controls keydown
     await repeat(function() {
       // fire keydown events on left arrow
-      fire(info.controlsContainer, 'keydown', {'keyCode': 37}); 
+      fire(info.controlsContainer, 'keydown', {'keyCode': 37});
     }, 3);
 
     var prev = info.index,
         current = slider.getInfo().index,
         absIndex = getAbsIndex(prev, -3, info),
         currentSlide = slideItems[current];
-        
-    assertion = 
+
+    assertion =
       current === absIndex + cloneCount &&
       navItems[Math.floor(absIndex/items)].className.indexOf(navActiveClass) >= 0 &&
       compare2Nums(currentSlide.getBoundingClientRect().left, innerWrapper.getBoundingClientRect().left);
 
     if (assertion) {
       // fire keydown events on right arrow
-      await repeat(function() { 
+      await repeat(function() {
         fire(info.controlsContainer, 'keydown', {'keyCode': 39});
       }, 3);
 
       current = slider.getInfo().index;
       absIndex = 0;
       currentSlide = slideItems[current];
-          
-      assertion = 
+
+      assertion =
         current === absIndex + cloneCount &&
         navItems[Math.floor(absIndex/items)].className.indexOf(navActiveClass) >= 0 &&
         compare2Nums(currentSlide.getBoundingClientRect().left, innerWrapper.getBoundingClientRect().left);
@@ -179,7 +179,7 @@ async function testBase () {
     var current = slider.getInfo().index,
         currentSlide = slideItems[current];
     if (assertion) {
-      assertion = 
+      assertion =
         getAbsIndex(current, 0, info) === 1 &&
         navItems[1].className.indexOf(navActiveClass) >= 0 &&
         compare2Nums(currentSlide.getBoundingClientRect().left, wrapperLeft);
@@ -196,7 +196,7 @@ async function testBase () {
         currentSlide = slideItems[current];
 
     if (assertion) {
-      assertion = 
+      assertion =
         getAbsIndex(current, 0, info) === 0 &&
         navItems[0].className.indexOf(navActiveClass) >= 0 &&
         compare2Nums(currentSlide.getBoundingClientRect().left, wrapperLeft);
@@ -214,7 +214,7 @@ async function testBase () {
         currentSlide = slideItems[current];
 
     if (assertion) {
-      assertion = 
+      assertion =
         getAbsIndex(current, 0, info) === 2 &&
         navItems[2].className.indexOf(navActiveClass) >= 0 &&
         compare2Nums(currentSlide.getBoundingClientRect().left, wrapperLeft);
@@ -358,7 +358,7 @@ async function testNonLoop () {
   await repeat(function() { nextButton.click(); }, (slideCount - items - 1));
   current = slideCount - items;
   if (assertion) {
-    assertion = 
+    assertion =
       nextButton.hasAttribute('disabled') &&
       navItems[Math.floor(current/items)].className.indexOf(navActiveClass) >= 0 &&
       !slideItems[current].hasAttribute('aria-hidden') &&
@@ -369,7 +369,7 @@ async function testNonLoop () {
   nextButton.click();
   if (assertion) {
     current = slideCount - items;
-    assertion = 
+    assertion =
       navItems[Math.floor(current/items)].className.indexOf(navActiveClass) >= 0 &&
       !slideItems[current].hasAttribute('aria-hidden');
   }
@@ -384,7 +384,7 @@ async function testNonLoop () {
   await repeat(function() { prevButton.click(); }, (slideCount - items - 1) );
   current = 0;
   if (assertion) {
-    assertion = 
+    assertion =
       prevButton.hasAttribute('disabled') &&
       navItems[Math.floor(current/items)].className.indexOf(navActiveClass) >= 0 &&
       !slideItems[current].hasAttribute('aria-hidden') &&
@@ -801,7 +801,7 @@ function center_regular (id) {
 
     await repeat(function() { nextButton.click(); }, 10);
     await wait(300);
-    
+
     return checkPositionCenter(id);
   });
 
@@ -854,7 +854,7 @@ function center_autoWidth (id) {
     var nextButton = slider.getInfo().nextButton;
     await repeat(function() { nextButton.click(); }, 10);
     await wait(1000);
-    
+
     updateTest(testAfterClick, checkPositionCenter(id, true));
 
     assignDone(id);
@@ -930,7 +930,7 @@ function center_lazyload (id) {
     await wait(1000);
     slider.getInfo().nextButton.click();
     await wait(500);
-    
+
     updateTest(testAfterClick, check_lazyload(id));
 
     assignDone(id);
@@ -1030,7 +1030,7 @@ function testResponsive1 () {
       last = slideItems[index + items - 1 + 1];
       wrapperRect = wrapper.getBoundingClientRect();
 
-      assertionItems = 
+      assertionItems =
         compare2Nums(first.getBoundingClientRect().left, wrapperRect.left) &&
         compare2Nums(last.getBoundingClientRect().right, wrapperRect.right);
       assertionGutter = window.getComputedStyle(first, null).paddingRight === gutter + 'px';
@@ -1047,7 +1047,7 @@ function testResponsive1 () {
       wrapperRect = wrapper.getBoundingClientRect();
 
       if (assertionItems) {
-        assertionItems = 
+        assertionItems =
           compare2Nums(first.getBoundingClientRect().left, wrapperRect.left) &&
           compare2Nums(last.getBoundingClientRect().right, wrapperRect.right);
       }
@@ -1070,7 +1070,7 @@ function testResponsive1 () {
       wrapperRect = wrapper.getBoundingClientRect();
 
       if (assertionItems) {
-        assertionSlideBy = 
+        assertionSlideBy =
           compare2Nums(first.getBoundingClientRect().left, wrapperRect.left) &&
           compare2Nums(last.getBoundingClientRect().right, wrapperRect.right);
       }
@@ -1180,7 +1180,7 @@ function testResponsive2 () {
       if (assertionNav) { assertionNav = getComputedStyle(navContainer, null).display !== 'none'; }
       if (assertionAutoplay) {
         assertionAutoplay = getComputedStyle(autoplayButton, null).display === 'none' &&
-          autoplayButton.getAttribute('data-action') === 'start' 
+          autoplayButton.getAttribute('data-action') === 'start'
           firstRect.left === slideItems[index].getBoundingClientRect().left;
       }
       // console.log(assertionControls, assertionNav, assertionAutoplay);
@@ -1863,7 +1863,7 @@ function testArrowKeys () {
         container = info.container,
         slideBy = info.slideBy,
         index = slider.getInfo().index;
-    
+
     // fire keydown event on right arrow
     fire(document, 'keydown', { 'keyCode': 39 });
     assertion = slider.getInfo().index === index + slideBy;
@@ -1924,7 +1924,7 @@ async function testAutoplay () {
 
   addTitle(id);
   runTest('autoplayButton: attrs', function() {
-    return autoplayButton.getAttribute('data-action') === 'stop' && 
+    return autoplayButton.getAttribute('data-action') === 'stop' &&
       autoplayButton.textContent.indexOf('stop animation') > -1;
   });
 
@@ -1939,14 +1939,14 @@ async function testAutoplay () {
 
   // click autoplay button once => pause
   autoplayButton.click();
-  assertion = 
+  assertion =
     autoplayButton.getAttribute('data-action') === 'start' &&
     autoplayButton.textContent.indexOf('start animation') > -1;
 
   if (assertion) {
     // click autoplay button the second time => restart
     autoplayButton.click();
-    assertion = 
+    assertion =
         autoplayButton.getAttribute('data-action') === 'stop' &&
         autoplayButton.textContent.indexOf('stop animation') > -1;
   }
@@ -2068,8 +2068,8 @@ async function testAnimation2 () {
   await wait(300);
   var index = slider.getInfo().index,
       rect = container.parentNode.getBoundingClientRect();
-      
-  assertion = 
+
+  assertion =
     index%slideCount === count*items%slideCount &&
     compare2Nums(slideItems[index].getBoundingClientRect().left, rect.left) &&
     compare2Nums(slideItems[index + items - 1].getBoundingClientRect().right, rect.right);
@@ -2113,7 +2113,7 @@ function testLazyload () {
 
     if (edgePadding) {
       first -= 1;
-      last += 1;  
+      last += 1;
     }
 
     addTitle(id);
@@ -2126,7 +2126,7 @@ function testLazyload () {
 
       return imgFirst.getAttribute('src') === imgFirst.getAttribute('data-src') &&
         imgLast.getAttribute('src') === imgLast.getAttribute('data-src') &&
-        imgPrev.getAttribute('src') !== imgPrev.getAttribute('data-src') && 
+        imgPrev.getAttribute('src') !== imgPrev.getAttribute('data-src') &&
         imgNext.getAttribute('src') !== imgNext.getAttribute('data-src');
     });
 
@@ -2209,7 +2209,7 @@ async function testCustomize () {
             ti = (i === absIndex) ? !nav.hasAttribute('tabindex') : nav.getAttribute('tabindex') === '-1';
 
         if (assertion) {
-          assertion = 
+          assertion =
             nav.getAttribute('data-nav') === i.toString() &&
             nav.getAttribute('aria-controls') === id &&
             nav.getAttribute('aria-label') === 'Carousel Page '+ (i + 1) + currentStr &&
@@ -2361,7 +2361,7 @@ function testNested () {
   prevButton.click();
   _nextButton.click();
   _assertion = _slider.getInfo().index === _index + _slideBy &&
-    slider.getInfo().index === index;    
+    slider.getInfo().index === index;
   updateTest(_test, _assertion);
   assignDone(id);
 }
@@ -2497,7 +2497,7 @@ function checkSlidesAttrs (id) {
       lastVisible = slideItems[index + items - 1],
       firstVisiblePrev = slideItems[index - 1],
       lastVisibleNext = slideItems[index + items],
-      checkLastItem = (options[id]['axis'] === 'vertical') ? true : 
+      checkLastItem = (options[id]['axis'] === 'vertical') ? true :
         compare2Nums(slideItems[slideItems.length - 1].getBoundingClientRect().top, info.container.parentNode.getBoundingClientRect().top),
       mul = options[id].loop !== false ? 2 : 1;
 
@@ -2554,7 +2554,7 @@ async function checkControlsClick (test, id, count, vertical, islast) {
     edge2 = 'bottom';
     wrapper = wrapper.parentNode;
   }
-      
+
   function getAssertion (absIndex) {
     var index = sliders[id].getInfo().index,
         first = slideItems[index],

@@ -2239,14 +2239,25 @@ var tns = function(options) {
 
           addEvents(img, imgEvents);
 
-          // update src
-          img.src = getAttr(img, 'data-src');
+          var styleData = getAttr(img, 'data-style');
+          if (styleData) {
+            console.log(styleData);
+            var existingStyle = getAttr(img, 'style') ? getAttr(img, 'style') : "";
+            var newStyle = styleData;
+            newStyle = "" + existingStyle + newStyle;
+            img.setAttribute('style', newStyle);
+            // since we're not going to be able to check load with this lets just say its done right away
+            addClass(img, imgCompleteClass);
+          } else {
+            // update src
+            img.src = getAttr(img, 'data-src');
 
-          // update srcset
-          var srcset = getAttr(img, 'data-srcset');
-          if (srcset) { img.srcset = srcset; }
+            // update srcset
+            var srcset = getAttr(img, 'data-srcset');
+            if (srcset) { img.srcset = srcset; }
 
-          addClass(img, 'loading');
+            addClass(img, 'loading');
+          }
         }
       });
     }
