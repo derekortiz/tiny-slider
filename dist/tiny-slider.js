@@ -2241,7 +2241,6 @@ var tns = function(options) {
 
           var styleData = getAttr(img, 'data-style');
           if (styleData) {
-            console.log(styleData);
             var existingStyle = getAttr(img, 'style') ? getAttr(img, 'style') : "";
             var newStyle = styleData;
             newStyle = "" + existingStyle + newStyle;
